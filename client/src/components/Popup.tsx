@@ -119,3 +119,46 @@ export function FAQPopup() {
     </Popup>
   )
 }
+
+export function PicPopup() {
+  const { accent, theme } = useTheme()  // reads same global colour, no setter needed
+
+  const isDark  = theme === "dark"
+  const surface = isDark ? "#1a1a24" : "#ffffff"
+  const border  = isDark ? "#2a2a3a" : "#e8e8f0"
+  const text    = isDark ? "#f0f0f8" : "#111118"
+  const subtext = isDark ? "#8888a8" : "#6666a0"
+
+  return (
+    <Popup
+      trigger={
+        <button style={{ background: "none", border: "none", cursor: "pointer" }}>
+          <QuestionMarkIcon style={{ color: ACCENTS[accent].bg }} />
+        </button>
+      }
+      modal
+      overlayStyle={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)" }}
+      contentStyle={{
+        background: surface, border: `1px solid ${border}`,
+        borderRadius: "20px", padding: 0,
+        width: "min(520px, 94vw)", color: text,
+        fontFamily: "'DM Sans', sans-serif",
+      }}
+    >
+      <div className="settings-header">
+        <div className="settings-title" style={{ color: text }}>FAQ</div>
+      </div>
+
+      <div className="settings-body">
+        {faqs.map((faq, i) => (
+          <div key={i} style={{ marginBottom: "18px" }}>
+            <div style={{ fontWeight: 600, color: ACCENTS[accent].bg, marginBottom: "4px" }}>
+              {faq.q}
+            </div>
+            <div style={{ fontSize: "14px", color: subtext }}>{faq.a}</div>
+          </div>
+        ))}
+      </div>
+    </Popup>
+  )
+}

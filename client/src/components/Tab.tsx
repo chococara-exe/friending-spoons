@@ -3,6 +3,7 @@ import IconButton from "@mui/material/IconButton";
 // import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { GrCatalog } from "react-icons/gr";
 import { SettingsPopup, FAQPopup } from "./Popup"
+import { ThemeProvider } from "../themeContext"
 
 function Tab() {
   return (
@@ -17,7 +18,7 @@ function Tab() {
         </div>
         <div>
             <IconButton onClick={() => {}}>
-            <GrCatalog />
+            <ThemeProvider> jfjfj <GrCatalog /> </ThemeProvider>
             </IconButton>
         </div>
     </div>
