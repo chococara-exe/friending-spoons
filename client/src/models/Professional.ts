@@ -1,7 +1,10 @@
 export default interface Professional {
-    title: "Friend" | "Spooner",
+    type: "Friend" | "Spooner",
     name: string,
     age: number,
+    email: string,
     image: string,
-    tags: string[]
+    tags: string[],
+    location: string,
+    description: string
 }

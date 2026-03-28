@@ -4,6 +4,7 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD:client/.gitignore
 pnpm-debug.log*
 lerna-debug.log*
 
@@ -22,3 +23,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+=======
+
+# server
+.env
+>>>>>>> de5df0954dffaed9b3a22d0c63388a49542b34b8:.gitignore
