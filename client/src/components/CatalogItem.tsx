@@ -1,11 +1,16 @@
 import type Professional from "../models/Professional"
 import framePNG from "../assets/frame.png"
 import dudePNG from "../assets/image.png"
+// import IconButton from "@mui/material/IconButton";
+import { PicPopup } from "./Popup"
+import { ThemeProvider } from "../themeContext"
 
 export default function CatalogItem(professional: Professional) {
     return (
         <div style={{ position: "relative", display: "inline-block" }}>
-
+            {/* <IconButton onClick={() => {}}> */}
+            <ThemeProvider>
+            <PicPopup professional={professional} /> 
             <div style={{ display: "grid" }}>
                 <img
                     src={dudePNG}
@@ -51,6 +56,8 @@ export default function CatalogItem(professional: Professional) {
                 <h1>{professional.type}</h1>
                 <h1>{professional.name}</h1>
             </div>
+            {/* </IconButton> */}
+            </ThemeProvider>
         </div>
     )
 }

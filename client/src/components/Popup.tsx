@@ -3,7 +3,11 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark"
 import Popup from "reactjs-popup"
 import "reactjs-popup/dist/index.css"
 import "../Popup.css"
-import { useTheme, ACCENTS } from "../themeContext"
+import { useTheme, ACCENTS } from "../themeContext.tsx"
+
+import type Professional from "../models/Professional"
+import framePNG from "../assets/frame.png"
+import dudePNG from "../assets/image.png"
 
 export function SettingsPopup() {
   const { accent, setAccent, theme, setTheme } = useTheme()
@@ -120,8 +124,8 @@ export function FAQPopup() {
   )
 }
 
-export function PicPopup() {
-  const { accent, theme } = useTheme()  // reads same global colour, no setter needed
+export function PicPopup({ professional }: { professional: Professional }) {
+  const { accent, theme } = useTheme()
 
   const isDark  = theme === "dark"
   const surface = isDark ? "#1a1a24" : "#ffffff"
@@ -132,9 +136,44 @@ export function PicPopup() {
   return (
     <Popup
       trigger={
-        <button style={{ background: "none", border: "none", cursor: "pointer" }}>
-          <QuestionMarkIcon style={{ color: ACCENTS[accent].bg }} />
-        </button>
+        // ← the whole card is the trigger
+        <div style={{ cursor: "pointer", position: "relative", display: "inline-block" }}>
+          <div style={{ display: "grid" }}>
+            <img
+              src={dudePNG}
+              alt={professional.name}
+              style={{
+                gridArea: "1/1",
+                width: "40%",
+                alignSelf: "center",
+                justifySelf: "start",
+                marginLeft: "30%",
+                marginTop: "5%",
+                height: "65%",
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+            <img
+              src={framePNG}
+              alt=""
+              style={{ gridArea: "1/1", display: "block", width: "100%" }}
+            />
+          </div>
+
+          {/* Nameplate */}
+          <div style={{
+            position: "absolute", bottom: "5%", left: "50%",
+            transform: "translateX(-50%)",
+            background: "linear-gradient(135deg, #b8860b, #ffd700, #b8860b)",
+            padding: "4px 20px", border: "1px solid #92400e",
+            fontFamily: "Georgia, serif", fontSize: 12,
+            letterSpacing: 2, color: "#5a3f05", whiteSpace: "nowrap",
+          }}>
+            <h1>{professional.type}</h1>
+            <h1>{professional.name}</h1>
+          </div>
+        </div>
       }
       modal
       overlayStyle={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)" }}
@@ -145,19 +184,14 @@ export function PicPopup() {
         fontFamily: "'DM Sans', sans-serif",
       }}
     >
+      {/* Popup content */}
       <div className="settings-header">
-        <div className="settings-title" style={{ color: text }}>FAQ</div>
+        <div className="settings-title" style={{ color: text }}>{professional.name}</div>
       </div>
 
       <div className="settings-body">
-        {faqs.map((faq, i) => (
-          <div key={i} style={{ marginBottom: "18px" }}>
-            <div style={{ fontWeight: 600, color: ACCENTS[accent].bg, marginBottom: "4px" }}>
-              {faq.q}
-            </div>
-            <div style={{ fontSize: "14px", color: subtext }}>{faq.a}</div>
-          </div>
-        ))}
+        <p style={{ color: subtext, fontSize: 14, marginBottom: 8 }}>{professional.type}</p>
+        <p style={{ color: text, fontSize: 14 }}>{professional.description}</p>
       </div>
     </Popup>
   )
