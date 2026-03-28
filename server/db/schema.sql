@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS friends (
   age INT(2),
   location VARCHAR(200),
   description VARCHAR(500),
-  photoLink VARCHAR(100)
+  photoLink VARCHAR(100),
+  tags JSON
 );
 
 CREATE TABLE IF NOT EXISTS spooners (
@@ -24,5 +25,6 @@ CREATE TABLE IF NOT EXISTS spooners (
   age INT(2),
   location VARCHAR(200),
   description VARCHAR(500),
-  photoLink VARCHAR(100)
+  photoLink VARCHAR(100),
+  tags JSON
 );
