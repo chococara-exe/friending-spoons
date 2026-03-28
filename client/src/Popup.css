@@ -1,0 +1,42 @@
+.settings-header {
+    margin: 2rem;
+}
+
+.settings-body {
+    margin: 2rem;
+    margin-top: 0.5rem;
+}
+
+.pic-popup-shell {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.pic-popup-title {
+  color: var(--text);
+}
+
+.pic-popup-type {
+  color: var(--subtext);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.pic-popup-description {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.pic-popup-tag {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}

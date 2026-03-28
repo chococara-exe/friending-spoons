@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 
 export type Theme = "dark" | "light"
 export type AccentColor = "violet" | "rose" | "amber" | "emerald" | "sky"
@@ -23,6 +23,18 @@ const ThemeContext = createContext<ThemeContextType | null>(null)
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [accent, setAccent] = useState<AccentColor>("violet")
   const [theme, setTheme] = useState<Theme>("dark")
+
+  // ← add this — writes CSS vars to <html> so the portal can see them
+  useEffect(() => {
+    const root = document.documentElement
+    const isDark = theme === "dark"
+    root.style.setProperty("--surface", isDark ? "#1a1a24" : "#ffffff")
+    root.style.setProperty("--border",  isDark ? "#2a2a3a" : "#e8e8f0")
+    root.style.setProperty("--text",    isDark ? "#f0f0f8" : "#111118")
+    root.style.setProperty("--subtext", isDark ? "#8888a8" : "#6666a0")
+    root.style.setProperty("--accent",  ACCENTS[accent].bg)
+  }, [accent, theme])
+
   return (
     <ThemeContext.Provider value={{ accent, setAccent, theme, setTheme }}>
       {children}

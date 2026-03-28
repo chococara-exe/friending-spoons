@@ -8,6 +8,7 @@ import { useTheme, ACCENTS } from "../themeContext.tsx"
 import type Professional from "../models/Professional"
 import framePNG from "../assets/frame.png"
 import dudePNG from "../assets/image.png"
+import { CiTextAlignCenter } from "react-icons/ci"
 
 export function SettingsPopup() {
   const { accent, setAccent, theme, setTheme } = useTheme()
@@ -125,73 +126,37 @@ export function FAQPopup() {
 }
 
 export function PicPopup({ professional }: { professional: Professional }) {
-  const { accent, theme } = useTheme()
-
-  const isDark  = theme === "dark"
-  const surface = isDark ? "#1a1a24" : "#ffffff"
-  const border  = isDark ? "#2a2a3a" : "#e8e8f0"
-  const text    = isDark ? "#f0f0f8" : "#111118"
-  const subtext = isDark ? "#8888a8" : "#6666a0"
-
   return (
     <Popup
       trigger={
-        // ← the whole card is the trigger
         <div style={{ cursor: "pointer", position: "relative", display: "inline-block" }}>
           <div style={{ display: "grid" }}>
-            <img
-              src={dudePNG}
-              alt={professional.name}
-              style={{
-                gridArea: "1/1",
-                width: "40%",
-                alignSelf: "center",
-                justifySelf: "start",
-                marginLeft: "30%",
-                marginTop: "5%",
-                height: "65%",
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
-            />
-            <img
-              src={framePNG}
-              alt=""
-              style={{ gridArea: "1/1", display: "block", width: "100%" }}
-            />
+            <img src={dudePNG} alt={professional.name} style={{ gridArea: "1/1", width: "40%", alignSelf: "center", justifySelf: "start", marginLeft: "30%", marginTop: "5%", height: "65%", objectFit: "cover", objectPosition: "center" }} />
+            <img src={framePNG} alt="" style={{ gridArea: "1/1", display: "block", width: "100%" }} />
           </div>
-
-          {/* Nameplate */}
-          <div style={{
-            position: "absolute", bottom: "5%", left: "50%",
-            transform: "translateX(-50%)",
-            background: "linear-gradient(135deg, #b8860b, #ffd700, #b8860b)",
-            padding: "4px 20px", border: "1px solid #92400e",
-            fontFamily: "Georgia, serif", fontSize: 12,
-            letterSpacing: 2, color: "#5a3f05", whiteSpace: "nowrap",
-          }}>
-            <h1>{professional.type}</h1>
+          <div style={{ position: "absolute", bottom: "5%", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg, #b8860b, #ffd700, #b8860b)", padding: "4px 20px", border: "1px solid #92400e", fontFamily: "Georgia, serif", fontSize: 12, letterSpacing: 2, color: "#5a3f05", whiteSpace: "nowrap" }}>
+            <h1 style={{ textAlign: center }}>{professional.type}</h1>
             <h1>{professional.name}</h1>
           </div>
         </div>
       }
       modal
       overlayStyle={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)" }}
-      contentStyle={{
-        background: surface, border: `1px solid ${border}`,
-        borderRadius: "20px", padding: 0,
-        width: "min(520px, 94vw)", color: text,
-        fontFamily: "'DM Sans', sans-serif",
-      }}
+      contentStyle={{ background: "transparent", border: "none", padding: 0, width: "min(520px, 94vw)" }}
     >
-      {/* Popup content */}
-      <div className="settings-header">
-        <div className="settings-title" style={{ color: text }}>{professional.name}</div>
-      </div>
-
-      <div className="settings-body">
-        <p style={{ color: subtext, fontSize: 14, marginBottom: 8 }}>{professional.type}</p>
-        <p style={{ color: text, fontSize: 14 }}>{professional.description}</p>
+      <div className="pic-popup-shell">
+        <div className="settings-header">
+          <div className="settings-title pic-popup-title">{professional.name}</div>
+        </div>
+        <div className="settings-body">
+          <p className="pic-popup-type">{professional.type}</p>
+          <p className="pic-popup-description">{professional.description}</p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+            {professional.tags.map(tag => (
+              <span key={tag} className="pic-popup-tag">{tag}</span>
+            ))}
+          </div>
+        </div>
       </div>
     </Popup>
   )
