@@ -1,10 +1,12 @@
 .settings-header {
     margin: 2rem;
+    font-size: large;
 }
 
 .settings-body {
     margin: 2rem;
     margin-top: 0.5rem;
+    font-size: larger;
 }
 
 .pic-popup-shell {

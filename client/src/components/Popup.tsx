@@ -8,7 +8,11 @@ import { useTheme, ACCENTS } from "../themeContext.tsx"
 import type Professional from "../models/Professional"
 import framePNG from "../assets/frame.png"
 import dudePNG from "../assets/image.png"
+
 import { CiTextAlignCenter } from "react-icons/ci"
+import { BsMoonStars } from "react-icons/bs";
+
+import { CiSun } from "react-icons/ci";
 
 export function SettingsPopup() {
   const { accent, setAccent, theme, setTheme } = useTheme()
@@ -50,7 +54,7 @@ export function SettingsPopup() {
                   border: `2px solid ${theme === t ? ACCENTS[accent].bg : border}`,
                 }}
               >
-                <span>{t === "dark" ? "🌙" : "☀️"}</span>
+                <span>{t === "dark" ? <BsMoonStars /> : <CiSun />}</span>
                 <span style={{ color: t === "dark" ? "#f0f0f8" : "#111118", fontSize: 13, fontWeight: 600 }}>{t}</span>
               </button>
             ))}
@@ -58,18 +62,50 @@ export function SettingsPopup() {
         </div>
 
         <div>
-          <div className="section-label" style={{ color: subtext }}>Accent Color</div>
-          <div className="accent-row">
-            {(Object.entries(ACCENTS) as [AccentColor, typeof ACCENTS[AccentColor]][]).map(([key, val]) => (
-              <button key={key} className="accent-btn" onClick={() => setAccent(key)} title={val.label}
-                style={{
-                  background: val.bg,
-                  border: `3px solid ${accent === key ? text : "transparent"}`,
-                  transform: accent === key ? "scale(1.15)" : "scale(1)",
-                }}
-              />
-            ))}
-          </div>
+            <div className="section-label" style={{ color: subtext }}>Accent Color</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                {(Object.entries(ACCENTS) as [AccentColor, typeof ACCENTS[AccentColor]][]).map(([key, val]) => (
+                <button
+                    key={key}
+                    onClick={() => setAccent(key)}
+                    style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "14px",
+                    background: accent === key ? val.bg + "18" : "transparent",
+                    border: `2px solid ${accent === key ? val.bg : border}`,
+                    borderRadius: "12px",
+                    padding: "10px 14px",
+                    cursor: "pointer",
+                    transition: "all 0.15s",
+                    }}
+                >
+                    {/* Circle */}
+                    <div style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: "50%",
+                    background: val.bg,
+                    flexShrink: 0,
+                    boxShadow: accent === key ? `0 0 0 3px ${val.bg}55` : "none",
+                    transition: "box-shadow 0.15s",
+                    }} />
+                    {/* Label */}
+                    <span style={{
+                    color: accent === key ? val.bg : text,
+                    fontSize: 14,
+                    fontWeight: accent === key ? 700 : 500,
+                    transition: "color 0.15s",
+                    }}>
+                    {val.label}
+                    </span>
+                    {/* Tick when selected */}
+                    {accent === key && (
+                    <span style={{ marginLeft: "auto", color: val.bg, fontSize: 18 }}>✓</span>
+                    )}
+                </button>
+                ))}
+            </div>
         </div>
       </div>
     </Popup>
@@ -135,7 +171,7 @@ export function PicPopup({ professional }: { professional: Professional }) {
             <img src={framePNG} alt="" style={{ gridArea: "1/1", display: "block", width: "100%" }} />
           </div>
           <div style={{ position: "absolute", bottom: "5%", left: "50%", transform: "translateX(-50%)", background: "linear-gradient(135deg, #b8860b, #ffd700, #b8860b)", padding: "4px 20px", border: "1px solid #92400e", fontFamily: "Georgia, serif", fontSize: 12, letterSpacing: 2, color: "#5a3f05", whiteSpace: "nowrap" }}>
-            <h1 style={{ textAlign: center }}>{professional.type}</h1>
+            <h1 style={{ textAlign: "center"  }}>{professional.type}</h1>
             <h1>{professional.name}</h1>
           </div>
         </div>
