@@ -16,7 +16,7 @@ export default function CatalogItem(professional: Professional) {
             />
 
             <img
-                src={professional.image}
+                src={professional.photoLink}
                 alt={professional.name}
                 style={{
                 position: "absolute",
@@ -45,6 +45,7 @@ export default function CatalogItem(professional: Professional) {
                 color: "#5a3f05",
                 whiteSpace: "nowrap",
             }}>
+                {professional.type}
                 {professional.name}
             </div>
         </div>

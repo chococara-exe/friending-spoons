@@ -3,7 +3,7 @@ export default interface Professional {
     name: string,
     age: number,
     email: string,
-    image: string,
+    photoLink: string,
     tags: string[],
     location: string,
     description: string
