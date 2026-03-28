@@ -1,17 +1,18 @@
 import IconButton from "@mui/material/IconButton";
-import SettingsIcon from "@mui/icons-material/Settings";
-import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+// import SettingsIcon from "@mui/icons-material/Settings";
+// import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { GrCatalog } from "react-icons/gr";
+import { SettingsPopup, FAQPopup } from "./Popup"
 
 function Tab() {
   return (
     <div className="flex items-center justify-between w-screen p-3">
         <div className="flex items-center">
             <IconButton onClick={() => {}}>
-            <SettingsIcon />
+            <SettingsPopup/>
             </IconButton>
             <IconButton onClick={() => {}}>
-            <QuestionMarkIcon/>
+            <FAQPopup/>
             </IconButton>
         </div>
         <div>
