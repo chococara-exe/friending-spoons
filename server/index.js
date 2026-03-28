@@ -62,8 +62,8 @@ app.post('/api/makeuser', (req, res) => {
 
 // Creates a friend (with name, email, age, location)
 app.post('/api/makefriend', (req, res) => {
-  const { name, email, age, location } = req.body
-  db.query('INSERT INTO friends (name, email, age, location) VALUES (?, ?, ?, ?)', [name, email, age, location], (err, result) => {
+  const { name, email, age, location, description, photoLink } = req.body
+  db.query('INSERT INTO friends (name, email, age, location, description, photoLink) VALUES (?, ?, ?, ?, ?, ?)', [name, email, age, location, description, photoLink], (err, result) => {
     if (err) return res.status(500).json({ error: err.message })
     res.json({ id: result.insertId, name, email })
   })
@@ -71,8 +71,8 @@ app.post('/api/makefriend', (req, res) => {
 
 // Creates a spooner (with name, email, age, location)
 app.post('/api/makespooner', (req, res) => {
-  const { name, email, age, location } = req.body
-  db.query('INSERT INTO spooners (name, email, age, location) VALUES (?, ?, ?, ?)', [name, email, age, location], (err, result) => {
+  const { name, email, age, location, description, photoLink } = req.body
+  db.query('INSERT INTO spooners (name, email, age, location, description, photoLink) VALUES (?, ?, ?, ?, ?, ?)', [name, email, age, location, description, photoLink], (err, result) => {
     if (err) return res.status(500).json({ error: err.message })
     res.json({ id: result.insertId, name, email })
   })

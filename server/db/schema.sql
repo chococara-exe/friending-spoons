@@ -12,7 +12,9 @@ CREATE TABLE IF NOT EXISTS friends (
   name VARCHAR(100),
   email VARCHAR(100) UNIQUE,
   age INT(2),
-  location VARCHAR(200)
+  location VARCHAR(200),
+  description VARCHAR(500),
+  photoLink VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS spooners (
@@ -20,5 +22,7 @@ CREATE TABLE IF NOT EXISTS spooners (
   name VARCHAR(100),
   email VARCHAR(100) UNIQUE,
   age INT(2),
-  location VARCHAR(200)
+  location VARCHAR(200),
+  description VARCHAR(500),
+  photoLink VARCHAR(100)
 );
